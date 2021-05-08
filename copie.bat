@@ -1,1 +1,0 @@
-copy /y .\*.* "F:\TRAVAIL\IT\Poulailler\Boitier principale\Python\"
