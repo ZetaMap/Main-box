@@ -1,16 +1,12 @@
-import sys
+﻿from os import open, read
+from json import loads
 
-open("./brain.py")
-"""
+
 if __name__ == '__main__':
-    from libs.keyboard import is_pressed as keydown
-
-    from vars import *
-
-    from menu import main_menu
-    from brain import __main__
+    from brain import __main__ as run
     
-    input(keydown("enter"))
+    dirr = "D:/propriétaire/Python Projects/poulailler/"
+    run(loads(read(open(dirr+"menu.json", 2), 9999999)))
+    
 
-    #__main__(screen)
-"""
+    

@@ -1,15 +1,16 @@
-from menu import *
+from Vars import *
+from Lib.keyboard import is_pressed as keydown
 
-letters=20
-actionsFolder="setAction"
-
-def runAction(file, index):
+def runAction(file, index=-1):
     try:
-        exec("from "+actionsFolder+"."+file+" import "+file)
-        exec(file+"("+str(index)+")")
-    except ModuleNotFoundError: raise FileNotFoundError("The file '"+file+".py' doesn't exist")
-    except ImportError: raise ImportError("The main function: '"+file+"', isn't defined in the file")
-    except TypeError: raise Warning("The main function takes 1 positional arguments")
+        exec("from {}.{} import {}".format(Vars.get("actionsFolder"), file, file))
+        if index == -1: exec("{}()".format(file))
+        else: 
+            if index < 0: raise ValueError("the value of 'index' must be greater than or equal to 0")
+            exec("{}({})".format(file, index))
+    except ModuleNotFoundError: raise FileNotFoundError("the file '"+file+".py' doesn't exist")
+    except ImportError: raise ImportError("the main function: '"+file+"', isn't defined in the file")
+    except TypeError: raise Warning("the main function takes 1 positional arguments")
 
 
 def printer(key, screen, input, index=0, format=[]):
@@ -43,7 +44,7 @@ def printer(key, screen, input, index=0, format=[]):
 
 
 
-        if actionsFolder in __temp__: runAction(__temp__[actionsFolder],index)
+        if Vars.get("actionsFolder") in __temp__: runAction(__temp__[Vars.get("actionsFolder")],index)
         return output, lines-i-1, index
     
     def __main__(lines, key, index, format, isIn=False):
@@ -57,7 +58,5 @@ def printer(key, screen, input, index=0, format=[]):
     print(key)
     print(option(2, key, input, index, format))
 
-def __main__(screen):
+def __main__(main_menu):
     printer(main_menu[0],"","",0,["|"])
-    while 1:
-        input()

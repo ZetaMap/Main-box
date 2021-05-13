@@ -1,18 +1,19 @@
 {
-    "default": {
-        "door": false,
-        "chickens": 0,
-        "opening": "auto",
-        "open": "06:30",
-        "close":"21:00",
-        "date": "01/01/2021",
-        "time": "12:00",
-        "battery": 100,
-        "totalIn": 0,
-        "totalOut": 0
-    },
-    
-    "custom": {
+  "default": {
+    "screen": "2x20",
+    "actionsFolder": "setAction",
+    "door": false,
+    "chickens": 0,
+    "opening": "auto",
+    "open": "06:30",
+    "close": "21:00",
+    "date": "01/01/2021",
+    "time": "12:00",
+    "battery": 100,
+    "totalIn": 0,
+    "totalOut": 0
+  },
+  "custom": {
 
-    }
+  }
 }
