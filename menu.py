@@ -1,17 +1,21 @@
+# -*- coding: utf-8 -*-
+
 main_menu = [
-	
+
     {
         "name": "Porte",
 		"desc": [],
         "option": [
 			"Ouvrir la porte",
         	"Fermer la porte"
-		]
+		],
+		"setAction": "doorStatut"
     },
     {
         "name": "Nombre de poules",
         "desc": ["Indiquez votre nombre de poule"],
-        "option": " - {} + poule(s)"
+        "option": " - {} + poule(s)",
+		"setAction": "chickenNumber"
     },
     {
         "name": "Ouverture porte",
@@ -25,24 +29,27 @@ main_menu = [
 					{
                 		"name": "Ouverture à",
                 		"desc": ["La porte s'ouvrira à"],
-                		"switch": True,
-                		"option": [
+                		"switchable": True,
+						"switch": [
 							" - {} + :{}",
 							" {}: - {} +"
-						]
+						],
+						"setAction": "openHour"
 					},
             		{
                 		"name": "Fermeture à",
                 		"desc": ["La porte se fermera à"],
-						"switch": True,
-                		"option": [
+						"switchable": True,
+						"switch": [
 							" - {} + :{}",
 							" {}: - {} +"
-						]
+						],
+						"setAction": "closeHour"
 					}
 				]
 			}
-		]
+		],
+		"setAction": "hoursType"
     },
     {
         "name": "Suivi des poules",
@@ -65,15 +72,22 @@ main_menu = [
 					{
 						"choise": True,
 						"name": None,
-						"isYes": [
-							"Veuillez brancher",
-							"une clé USB ..."
-						],
+						"isYes": {
+							"waiting": True,
+							"wait": [
+								"Veuillez brancher",
+								"une clé USB ..."
+							],
+							"confirm": "Fichier exporter avec succès !",
+							"denied": "Erreur : fichier non exporter !"
+						},
 						"isNo": None
 					}
-				]
+				],
+				"setAction": "chickenLogs"
 			}
 		]
+		
     },
 	{
 		"name": "Date/heure",
@@ -82,8 +96,9 @@ main_menu = [
 			{
 				"name": "Date",
 				"desc": ["Indiquez la date de la machine"],
-				"switch": True,
-				"option": [
+				"option": [],
+				"switchable": True,
+				"switch": [
 					" - {} + /{}/{}",
 					" {}/ - {} + /{}",
 					" {}/{}/ - {} +"
@@ -92,13 +107,15 @@ main_menu = [
 			{
 				"name": "Heure",
 				"desc": ["Indiquez l'heure de la machine"],
-				"switch": True,
-				"option": [
+				"option": [],
+				"switchable": True,
+				"switch": [
 					" - {} + :{}",
 					" {}: - {} +"
 				]
 			}
-		]
+		],
+		"setAction": "timeSet"
 	},
     {
         "name": "Statut machine",
