@@ -4,7 +4,7 @@
     "actionsFolder": "setAction",
     "door": false,
     "chickens": 0,
-    "opening": "auto",
+    "opening": true,
     "open": "06:30",
     "close": "21:00",
     "date": "01/01/2021",
@@ -14,6 +14,17 @@
     "totalOut": 0
   },
   "custom": {
-
+    "screen": "2x20",
+    "actionsFolder": "setAction",
+    "door": false,
+    "chickens": 0,
+    "opening": true,
+    "open": "06:30",
+    "close": "21:00",
+    "date": "01/01/2021",
+    "time": "12:00",
+    "battery": 100,
+    "totalIn": 0,
+    "totalOut": 0
   }
 }

@@ -1,50 +1,48 @@
-# -*- coding: utf-8 -*-
+from os import getcwd
+from Lib.json import loads, dumps
 
-from os import read, open, write, close
-from json import loads, dumps
-
-class Vars():
+class Vars:
     def __init__(self):
-        self.dirr = "D:/propriétaire/Python Projects/poulailler/"
-        self.file = open(self.dirr+"settings.json", 2)
-        self.settings = loads(read(self.file, 9999999))
-        close(self.file)
+        self.dirr = getcwd()+"\\"
+        self.settings = self.loadFile("settings")
 
-    def load(self): 
-        def loader(key):
-            out = ()
-            for i in key:
-                out = out.__add__((key[i],))
-            return out
-
-        self.__init__()
-        out = loader(self.settings["custom"])
-        if out == (): return loader(self.Create())
-        else: return out
-
-    def Create(self): 
-        self.settings["custom"] = self.settings["default"]
-        self.file = open(self.dirr+"settings.json",2)
-
-        write(self.file,dumps(
-            loads("""{}"default": {}, "custom": {}{}""".format(
-                "{", 
-                dumps(self.settings["default"]), 
-                dumps(self.settings["custom"]), 
-                "}"
+    def SavePatern(self, paternIndex):
+        paterns=[
+            # Settings patern
+            loads("""{}"default": {}, "custom": {} {}""".format(
+            "{", 
+            dumps(self.settings["default"]), 
+            dumps(self.settings["custom"]), 
+            "}"
             ))
-        , indent=2).encode("utf-8"))
-        close(self.file)
-        
-        self.__init__()
-        return self.settings
+        ]
+        return paterns[paternIndex]
 
+    def SaveFile(self, fileName, content):
+        fileID = open(self.dirr+fileName+".json","wt")
+        fileID.write(dumps(content, indent=2))
+        fileID.close()
+        return self.loadFile(fileName)
+
+    def loadFile(self, fileName): 
+        fileID = open(self.dirr+fileName+".json", "rt")
+        content = loads(fileID.read())
+        fileID.close()
+        return content
+
+    def create(self): 
+        self.settings["custom"] = self.settings["default"]
+        self.settings = self.SaveFile("settings", self.SavePatern(0))
+        return self.settings
+ 
     def save(self, item, value):
         try: self.settings["custom"][item] = value
-        except KeyError: self.settings["custom"] += {str(item): value}
+        except KeyError: self.settings["custom"].update({str(item): value})
+        self.SaveFile("settings", self.SavePatern(0))
+        return self.settings["custom"][item]
 
-    def get(self, item):
-        try: return self.settings["custom"][item]
-        except KeyError: raise KeyError("the key '{}' doesn't exist".format(item))
+    def saveEach(self, args):
+        self.settings["custom"].update(args)
+        self.SaveFile("settings", self.SavePatern(0))
 
 Vars=Vars()

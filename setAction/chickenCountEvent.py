@@ -1,0 +1,3 @@
+﻿def chickenCountEvent(args):
+    ...
+    # insérer code pour modifier backup.log

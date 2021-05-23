@@ -1,5 +1,4 @@
 [
-
     {
         "name": "Porte",
 		"desc": [],
@@ -12,7 +11,8 @@
     {
         "name": "Nombre de poules",
         "desc": ["Indiquez votre nombre de poule"],
-        "option": " - {} + poule(s)",
+		"switch": true,
+        "option": [" - {} + poule(s)"],
 		"setAction": "chickenNumber"
     },
     {
@@ -27,8 +27,8 @@
 					{
                 		"name": "Ouverture à",
                 		"desc": ["La porte s'ouvrira à"],
-                		"switchable": true,
-						"switch": [
+                		"switch": true,
+						"option": [
 							" - {} + :{}",
 							" {}: - {} +"
 						],
@@ -37,8 +37,8 @@
             		{
                 		"name": "Fermeture à",
                 		"desc": ["La porte se fermera à"],
-						"switchable": true,
-						"switch": [
+						"switch": true,
+						"option": [
 							" - {} + :{}",
 							" {}: - {} +"
 						],
@@ -66,23 +66,12 @@
 			{
 				"name": "Exporter sur USB",
 				"desc": ["Exporter un suivi détaillé des poules ?"],
+				"swtich": true,
         		"option": [
-					{
-						"choise": true,
-						"name": null,
-						"isYes": {
-							"waiting": true,
-							"wait": [
-								"Veuillez brancher",
-								"une clé USB ..."
-							],
-							"confirm": "Fichier exporter avec succès !",
-							"denied": "Erreur : fichier non exporter !"
-						},
-						"isNo": null
-					}
+					" >OUI   NON{}{}",
+					"  OUI  >NON{}{}"
 				],
-				"setAction": "chickenLogs"
+				"setAction": "USBExport"
 			}
 		]
 		
@@ -94,26 +83,25 @@
 			{
 				"name": "Date",
 				"desc": ["Indiquez la date de la machine"],
-				"option": [],
-				"switchable": true,
-				"switch": [
+				"switch": true,
+				"option": [
 					" - {} + /{}/{}",
 					" {}/ - {} + /{}",
 					" {}/{}/ - {} +"
-				]
+				],
+				"setAction": "dateSet"
 			},
 			{
 				"name": "Heure",
 				"desc": ["Indiquez l'heure de la machine"],
-				"option": [],
-				"switchable": true,
-				"switch": [
+				"switch": true,
+				"option": [
 					" - {} + :{}",
 					" {}: - {} +"
-				]
+				],
+				"setAction": "hourSet"
 			}
-		],
-		"setAction": "timeSet"
+		]
 	},
     {
         "name": "Statut machine",
