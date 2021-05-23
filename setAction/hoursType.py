@@ -3,8 +3,8 @@ from Brain import Brain
 
 def hoursType(statut, args):
     if statut == 0:
-        Vars.save("opening", True)
+        Vars.SaveSetting("opening", True)
         Brain.succes()
 
     elif statut == 1:
-        Vars.save("opening", False)
+        Vars.SaveSetting("opening", False)

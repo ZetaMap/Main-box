@@ -6,14 +6,14 @@
 			"Ouvrir la porte",
         	"Fermer la porte"
 		],
-		"setAction": "doorStatut"
+		"StartEvent": "doorStatut"
     },
     {
         "name": "Nombre de poules",
         "desc": ["Indiquez votre nombre de poule"],
 		"switch": true,
         "option": [" - {} + poule(s)"],
-		"setAction": "chickenNumber"
+		"StartEvent": "chickenNumber"
     },
     {
         "name": "Ouverture porte",
@@ -32,7 +32,7 @@
 							" - {} + :{}",
 							" {}: - {} +"
 						],
-						"setAction": "openHour"
+						"StartEvent": "openHour"
 					},
             		{
                 		"name": "Fermeture à",
@@ -42,12 +42,12 @@
 							" - {} + :{}",
 							" {}: - {} +"
 						],
-						"setAction": "closeHour"
+						"StartEvent": "closeHour"
 					}
 				]
 			}
 		],
-		"setAction": "hoursType"
+		"StartEvent": "hoursType"
     },
     {
         "name": "Suivi des poules",
@@ -60,7 +60,8 @@
 					"Entrées journalières : {} poule(s)",
 					"Sorties journalières : {} poule(s)",
 					"..."
-				]
+				],
+				"StartEvent": "getBilan"
 
 			},
 			{
@@ -68,10 +69,10 @@
 				"desc": ["Exporter un suivi détaillé des poules ?"],
 				"swtich": true,
         		"option": [
-					" >OUI   NON{}{}",
-					"  OUI  >NON{}{}"
+					"  OUI  >NON",
+					" >OUI   NON"
 				],
-				"setAction": "USBExport"
+				"StartEvent": "USBExport"
 			}
 		]
 		
@@ -89,7 +90,7 @@
 					" {}/ - {} + /{}",
 					" {}/{}/ - {} +"
 				],
-				"setAction": "dateSet"
+				"StartEvent": "dateSet"
 			},
 			{
 				"name": "Heure",
@@ -99,7 +100,7 @@
 					" - {} + :{}",
 					" {}: - {} +"
 				],
-				"setAction": "hourSet"
+				"StartEvent": "hourSet"
 			}
 		]
 	},
@@ -112,6 +113,7 @@
 			"Consommation : {} Watts",
 			"Total d'entrées : {} poules",
 			"Total de sortis : {} poules"
-		]
+		],
+		"StartEvent": "getMachine"
     }
 ]

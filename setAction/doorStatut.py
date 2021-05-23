@@ -1,12 +1,12 @@
 ﻿from Vars import Vars
 
-def doorStatut(statut, args):
+def doorStatut(statut, args=(True,)):
     if statut == 0:
-        Vars.save("door", True)
+        Vars.SaveSetting("door", True)
         # insérer code pour ouvrir la porte
 
     elif statut == 1:
-        Vars.save("door", False)
+        Vars.SaveSetting("door", False)
         # insérer code pour fermer la porte
 
     if args[0]:

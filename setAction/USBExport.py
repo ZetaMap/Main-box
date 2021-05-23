@@ -1,7 +1,10 @@
 ﻿from Brain import Brain
 
 def USBExport(statut, args):
-    if statut == 0:
+    if statut == -1:
+        return ([], [])
+
+    elif statut == 1:
         print("Veuillez brancher")
         print("une clé USB ...")
 
