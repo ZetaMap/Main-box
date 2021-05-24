@@ -2,8 +2,8 @@ from os import getcwd
 from Lib.json import loads, dumps
 
 class Vars:
-    def __init__(self):
-        self.dirr = getcwd()+"\\"
+    def init(self):
+        self.dirr = getcwd()+"\\saves\\"
         self.settings = self.LoadFile("settings")
 
     def savePatern(self, paternIndex):
@@ -46,8 +46,7 @@ class Vars:
         self.SaveFile("settings", self.savePatern(0))
 
     def GetSetting(self, item):
-        try:
-            return self.settings["custom"][item]
+        try: return self.settings["custom"][item]
         except KeyError: raise KeyError("the key '{}' doesn't exist".format(item))
 
 Vars=Vars()

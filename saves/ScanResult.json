@@ -1,0 +1,332 @@
+[
+  {
+    "keyIndex": 0,
+    "keyDir": 0,
+    "later": "main_menu[0]",
+    "emptyDesc": true,
+    "emptyOption": false,
+    "isASwitch": false,
+    "intoOption": [
+      {
+        "keyIndex": 0,
+        "keyDir": 1,
+        "later": "main_menu[0]['option'][0]",
+        "type": "str"
+      },
+      {
+        "keyIndex": 1,
+        "keyDir": 1,
+        "later": "main_menu[0]['option'][1]",
+        "type": "str"
+      }
+    ],
+    "type": "dict"
+  },
+  {
+    "keyIndex": 1,
+    "keyDir": 0,
+    "later": "main_menu[1]",
+    "emptyDesc": false,
+    "intoDesc": [
+      {
+        "keyIndex": 0,
+        "keyDir": 1,
+        "later": "main_menu[1]['desc'][0]",
+        "type": "str"
+      }
+    ],
+    "emptyOption": false,
+    "isASwitch": true,
+    "switchValues": [
+      [
+        0
+      ]
+    ],
+    "type": "dict"
+  },
+  {
+    "keyIndex": 2,
+    "keyDir": 0,
+    "later": "main_menu[2]",
+    "emptyDesc": true,
+    "emptyOption": false,
+    "isASwitch": false,
+    "intoOption": [
+      {
+        "keyIndex": 0,
+        "keyDir": 1,
+        "later": "main_menu[2]['option'][0]",
+        "type": "str"
+      },
+      {
+        "keyIndex": 1,
+        "keyDir": 1,
+        "later": "main_menu[2]['option'][1]",
+        "emptyDesc": true,
+        "emptyOption": false,
+        "isASwitch": false,
+        "intoOption": [
+          {
+            "keyIndex": 0,
+            "keyDir": 2,
+            "later": "main_menu[2]['option'][1]['option'][0]",
+            "emptyDesc": false,
+            "intoDesc": [
+              {
+                "keyIndex": 0,
+                "keyDir": 3,
+                "later": "main_menu[2]['option'][1]['option'][0]['desc'][0]",
+                "type": "str"
+              }
+            ],
+            "emptyOption": false,
+            "isASwitch": true,
+            "switchValues": [
+              [
+                "06"
+              ],
+              [
+                "30"
+              ]
+            ],
+            "type": "dict"
+          },
+          {
+            "keyIndex": 1,
+            "keyDir": 2,
+            "later": "main_menu[2]['option'][1]['option'][1]",
+            "emptyDesc": false,
+            "intoDesc": [
+              {
+                "keyIndex": 0,
+                "keyDir": 3,
+                "later": "main_menu[2]['option'][1]['option'][1]['desc'][0]",
+                "type": "str"
+              }
+            ],
+            "emptyOption": false,
+            "isASwitch": true,
+            "switchValues": [
+              [
+                "21"
+              ],
+              [
+                "00"
+              ]
+            ],
+            "type": "dict"
+          }
+        ],
+        "type": "dict"
+      }
+    ],
+    "type": "dict"
+  },
+  {
+    "keyIndex": 3,
+    "keyDir": 0,
+    "later": "main_menu[3]",
+    "emptyDesc": true,
+    "emptyOption": false,
+    "isASwitch": false,
+    "intoOption": [
+      {
+        "keyIndex": 0,
+        "keyDir": 1,
+        "later": "main_menu[3]['option'][0]",
+        "emptyDesc": false,
+        "intoDesc": [
+          {
+            "keyIndex": 0,
+            "keyDir": 2,
+            "later": "main_menu[3]['option'][0]['desc'][0]",
+            "type": "str"
+          },
+          {
+            "keyIndex": 1,
+            "keyDir": 2,
+            "later": "main_menu[3]['option'][0]['desc'][1]",
+            "type": "str"
+          },
+          {
+            "keyIndex": 2,
+            "keyDir": 2,
+            "later": "main_menu[3]['option'][0]['desc'][2]",
+            "type": "str"
+          },
+          {
+            "switchValues": [
+              [
+                0
+              ],
+              [
+                0
+              ]
+            ]
+          }
+        ],
+        "emptyOption": true,
+        "isASwitch": false,
+        "intoOption": [],
+        "type": "dict"
+      },
+      {
+        "keyIndex": 1,
+        "keyDir": 1,
+        "later": "main_menu[3]['option'][1]",
+        "emptyDesc": false,
+        "intoDesc": [
+          {
+            "keyIndex": 0,
+            "keyDir": 2,
+            "later": "main_menu[3]['option'][1]['desc'][0]",
+            "type": "str"
+          }
+        ],
+        "emptyOption": false,
+        "isASwitch": false,
+        "intoOption": [
+          {
+            "keyIndex": 0,
+            "keyDir": 2,
+            "later": "main_menu[3]['option'][1]['option'][0]",
+            "type": "str"
+          },
+          {
+            "keyIndex": 1,
+            "keyDir": 2,
+            "later": "main_menu[3]['option'][1]['option'][1]",
+            "type": "str"
+          }
+        ],
+        "type": "dict"
+      }
+    ],
+    "type": "dict"
+  },
+  {
+    "keyIndex": 4,
+    "keyDir": 0,
+    "later": "main_menu[4]",
+    "emptyDesc": true,
+    "emptyOption": false,
+    "isASwitch": false,
+    "intoOption": [
+      {
+        "keyIndex": 0,
+        "keyDir": 1,
+        "later": "main_menu[4]['option'][0]",
+        "emptyDesc": false,
+        "intoDesc": [
+          {
+            "keyIndex": 0,
+            "keyDir": 2,
+            "later": "main_menu[4]['option'][0]['desc'][0]",
+            "type": "str"
+          }
+        ],
+        "emptyOption": false,
+        "isASwitch": true,
+        "switchValues": [
+          [
+            "01"
+          ],
+          [
+            "01"
+          ],
+          [
+            "2021"
+          ]
+        ],
+        "type": "dict"
+      },
+      {
+        "keyIndex": 1,
+        "keyDir": 1,
+        "later": "main_menu[4]['option'][1]",
+        "emptyDesc": false,
+        "intoDesc": [
+          {
+            "keyIndex": 0,
+            "keyDir": 2,
+            "later": "main_menu[4]['option'][1]['desc'][0]",
+            "type": "str"
+          }
+        ],
+        "emptyOption": false,
+        "isASwitch": true,
+        "switchValues": [
+          [
+            "12"
+          ],
+          [
+            "00"
+          ]
+        ],
+        "type": "dict"
+      }
+    ],
+    "type": "dict"
+  },
+  {
+    "keyIndex": 5,
+    "keyDir": 0,
+    "later": "main_menu[5]",
+    "emptyDesc": false,
+    "intoDesc": [
+      {
+        "keyIndex": 0,
+        "keyDir": 1,
+        "later": "main_menu[5]['desc'][0]",
+        "type": "str"
+      },
+      {
+        "keyIndex": 1,
+        "keyDir": 1,
+        "later": "main_menu[5]['desc'][1]",
+        "type": "str"
+      },
+      {
+        "keyIndex": 2,
+        "keyDir": 1,
+        "later": "main_menu[5]['desc'][2]",
+        "type": "str"
+      },
+      {
+        "keyIndex": 3,
+        "keyDir": 1,
+        "later": "main_menu[5]['desc'][3]",
+        "type": "str"
+      },
+      {
+        "keyIndex": 4,
+        "keyDir": 1,
+        "later": "main_menu[5]['desc'][4]",
+        "type": "str"
+      },
+      {
+        "switchValues": [
+          [
+            "t"
+          ],
+          [
+            "t"
+          ],
+          [
+            "t"
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      }
+    ],
+    "emptyOption": true,
+    "isASwitch": false,
+    "intoOption": [],
+    "type": "dict"
+  }
+]
