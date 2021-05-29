@@ -19,14 +19,14 @@ class Vars:
         return paterns[paternIndex]
 
     def SaveFile(self, fileName, content):
-        fileID = open(self.dirr+fileName+".json","wt")
-        fileID.write(dumps(content, indent=2))
+        with open(self.dirr+fileName+".json","wt") as fileID:
+            fileID.write(dumps(content, indent=2))
         fileID.close()
         return self.LoadFile(fileName)
 
     def LoadFile(self, fileName): 
-        fileID = open(self.dirr+fileName+".json", "rt")
-        content = loads(fileID.read())
+        with open(self.dirr+fileName+".json", "rt") as fileID:
+            content = loads(fileID.read())
         fileID.close()
         return content
 
@@ -39,7 +39,6 @@ class Vars:
         try: self.settings["custom"][item] = value
         except KeyError: self.settings["custom"].update({str(item): value})
         self.SaveFile("settings", self.savePatern(0))
-        return self.settings["custom"][item]
 
     def SaveSettingAll(self, args):
         self.settings["custom"].update(args)

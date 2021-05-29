@@ -8,13 +8,11 @@ from Functions import *
 class Brain:
     def init(self):
         Vars.init()
-        fileContent = Vars.LoadFile("settings")
-        self.settings = fileContent["custom"]
-        if self.settings == {}: self.settings = Vars.CreateSettings()["custom"]
-        for i in fileContent["default"]: 
-            if not i in self.settings: self.settings.update({i: fileContent["default"][i]})
-        Vars.SaveSettingAll(self.settings)
-        self.main_menu = Vars.LoadFile("menu")
+        try: 
+            self.settings = ScanSettings(Vars.LoadFile("settings"))
+            self.main_menu = Vars.LoadFile("menu")
+            self.ScanResult = ScanMenu(self.main_menu)
+        except FileNotFoundError as e: FileNotFoundError(str(e))
 
         self.dir = 0
         self.index = 0
@@ -25,7 +23,6 @@ class Brain:
         self.isACounter = False
         self.isASwitch = False
         self.switchIndex = ()
-        self.ScanResult = ScanMenu(self.main_menu)
 
     def _format(self, key, format):
         output, dump=[], ()
@@ -53,6 +50,7 @@ class Brain:
         print("modifié !  \\/")
         return self.back()
 
+#################################################
     def name(self, key, index):
         output, lines=[], self.lines
         for i in range(lines):
@@ -66,11 +64,11 @@ class Brain:
                 else: raise TypeError("only 'str' or 'dict' type is accept in the key")
                 lines-=1
         return output, lines
+################################################
 
-    def desc(self, key):
-        output, lines=[], self.lines
-        for i in range(lines):
-            ...
+    def desc(self, key, format=()):
+        output, lines=self._format(key["desc"], format), self.lines
+        for i in range(len(output)-lines): output.pop()
 
     def waitStart(self):
         for i in range(self.lines): print()   # éteindre tout
@@ -79,9 +77,6 @@ class Brain:
         self.init()  # allumer tout
         return self.name(self.main_menu, 0)[0]
 
-    def _print(self, key):
-        for i in Brain.name(key, self.index)[0]:
-            print(i)
 
     def keys(self, input, key):
         print(self.index,":",self.dir,":",input)
@@ -119,10 +114,12 @@ class Brain:
         
         elif input == "suppr": self.waitStart()
 
+    def _print(self, key):
+        for i in Brain.name(key, self.index)[0]:
+            print(i)
+
 Brain=Brain()
 
-
-#print(Brain.ScanMenu(Brain.main_menu))
 
 """
 

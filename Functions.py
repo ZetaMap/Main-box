@@ -8,16 +8,35 @@ def StartEvent(file, position, *args):
     except ImportError: raise ImportError("the main function: '"+file+"()', isn't defined in the file")
     except TypeError: raise Warning("the main function takes 2 positional arguments: (statut: int, args: tuple)")
 
+def ScanSettings(key):
+    if type(key) != dict: raise TypeError("type must be Dict only")
+
+    try: default=key["default"]
+    except KeyError: raise KeyError("must have a 'default' key in which default settings will be stored")
+    try: custom=key["custom"]
+    except KeyError: raise KeyError("must have a 'custom' key in which user settings will be stored")
+    if type(key["default"]) != dict: raise TypeError("'default' must only be of type Dict")
+    if type(key["custom"]) != dict: raise TypeError("'custom' must only be of type Dict")
+
+    if not "screen" in key["default"]: raise KeyError("a 'screen' key must be created in key 'default' and must respect this form: '<lines>x<letters>'")
+    if not "EventsFolder" in key["default"]: raise KeyError("a 'EventsFolder' key must be created in key 'default' and must contain the name of the folder where the 'Events' files are located")
+
+    if custom == {}: custom = Vars.CreateSettings()["custom"]
+    else:
+        for i in default: 
+            if not i in custom: custom.update({i: default[i]})
+        Vars.SaveSettingAll(custom)
+    return custom
 
 def ScanMenu(key, keyDir=0, keyLater="main_menu"):
     output=()
+
     for i in range(len(key)):
         output=output.__add__(({"keyIndex": i},))
         output[i].update({"keyDir": keyDir})
-        output[i].update({"later": "{}[{}]".format(keyLater, i)})
+        output[i].update({"later": keyLater})
 
         if type(key[i]) == dict:
-            
             if not key[i].__contains__("name"): raise KeyError("must contain a non-empty 'name' key")
             elif type(key[i]["name"]) != str: raise TypeError("the key 'name' must be a Str")
             elif key[i]["name"] == "": raise ValueError("please don't use an empty Str")
