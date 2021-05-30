@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 
-from Lib.keyboard import read_hotkey as keyInput, wait
+from lib.keyboard import read_hotkey as keyInput, wait
 from time import sleep
 from Vars import Vars
 from Functions import *
 
 class Brain:
-    def init(self):
+    def init(self, debugScan=False):
         Vars.init()
         try: 
             self.settings = ScanSettings(Vars.LoadFile("settings"))
             self.main_menu = Vars.LoadFile("menu")
             self.ScanResult = ScanMenu(self.main_menu)
+            if debugScan: Vars.SaveFile("ScanMenu", self.ScanResult)
         except FileNotFoundError as e: FileNotFoundError(str(e))
 
         self.dir = 0
@@ -28,12 +29,12 @@ class Brain:
         output, dump=[], ()
         for i in range(len(key)):
             try:
-                output.append(key[i].format(format[i][0]))
+                output.append(key[i].format(format[i]))
             except IndexError: 
                 try:
                     for ii in range(key[i].count("{}")): dump+=(format[i][ii],)
                     output.append(eval("key[i].format"+str(dump)))
-                except IndexError: 
+                except: 
                     for ii in range(key[i].count("{}")): dump+=("<unknown>",)
                     output.append(eval("key[i].format"+str(dump)))
         return output
@@ -107,10 +108,10 @@ class Brain:
             return self.later
 
         elif input == "gauche" and self.isACounter:
-            ...
+            pass
 
         elif input == "droite" and self.isACounter:
-            ...
+            pass
         
         elif input == "suppr": self.waitStart()
 
@@ -119,11 +120,3 @@ class Brain:
             print(i)
 
 Brain=Brain()
-
-
-"""
-
-while True:
-    try: Brain._print(Brain.keys(keyInput(False), Brain.main_menu))
-    except IndexError: ...
-"""

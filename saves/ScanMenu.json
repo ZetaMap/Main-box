@@ -1,0 +1,234 @@
+[
+  {
+    "index": 0,
+    "later": "main_menu",
+    "emptyDesc": true,
+    "emptyOption": false,
+    "isASwitch": false,
+    "intoOption": [
+      {
+        "index": 0,
+        "later": "main_menu[0]['option']"
+      },
+      {
+        "index": 1,
+        "later": "main_menu[0]['option']"
+      }
+    ]
+  },
+  {
+    "index": 1,
+    "later": "main_menu",
+    "emptyDesc": false,
+    "intoDesc": [
+      {
+        "index": 0,
+        "later": "main_menu[1]['desc']"
+      }
+    ],
+    "emptyOption": false,
+    "isASwitch": true,
+    "switchValues": [
+      0
+    ]
+  },
+  {
+    "index": 2,
+    "later": "main_menu",
+    "emptyDesc": true,
+    "emptyOption": false,
+    "isASwitch": false,
+    "intoOption": [
+      {
+        "index": 0,
+        "later": "main_menu[2]['option']"
+      },
+      {
+        "index": 1,
+        "later": "main_menu[2]['option']",
+        "emptyDesc": true,
+        "emptyOption": false,
+        "isASwitch": false,
+        "intoOption": [
+          {
+            "index": 0,
+            "later": "main_menu[2]['option'][1]['option']",
+            "emptyDesc": false,
+            "intoDesc": [
+              {
+                "index": 0,
+                "later": "main_menu[2]['option'][1]['option'][0]['desc']"
+              }
+            ],
+            "emptyOption": false,
+            "isASwitch": true,
+            "switchValues": [
+              6,
+              30
+            ]
+          },
+          {
+            "index": 1,
+            "later": "main_menu[2]['option'][1]['option']",
+            "emptyDesc": false,
+            "intoDesc": [
+              {
+                "index": 0,
+                "later": "main_menu[2]['option'][1]['option'][1]['desc']"
+              }
+            ],
+            "emptyOption": false,
+            "isASwitch": true,
+            "switchValues": [
+              21,
+              0
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "index": 3,
+    "later": "main_menu",
+    "emptyDesc": true,
+    "emptyOption": false,
+    "isASwitch": false,
+    "intoOption": [
+      {
+        "index": 0,
+        "later": "main_menu[3]['option']",
+        "emptyDesc": false,
+        "intoDesc": [
+          {
+            "index": 0,
+            "later": "main_menu[3]['option'][0]['desc']"
+          },
+          {
+            "index": 1,
+            "later": "main_menu[3]['option'][0]['desc']"
+          },
+          {
+            "index": 2,
+            "later": "main_menu[3]['option'][0]['desc']"
+          },
+          {
+            "switchValues": [
+              0,
+              0
+            ]
+          }
+        ],
+        "emptyOption": true,
+        "isASwitch": false,
+        "intoOption": []
+      },
+      {
+        "index": 1,
+        "later": "main_menu[3]['option']",
+        "emptyDesc": false,
+        "intoDesc": [
+          {
+            "index": 0,
+            "later": "main_menu[3]['option'][1]['desc']"
+          }
+        ],
+        "emptyOption": false,
+        "isASwitch": false,
+        "intoOption": [
+          {
+            "index": 0,
+            "later": "main_menu[3]['option'][1]['option']"
+          },
+          {
+            "index": 1,
+            "later": "main_menu[3]['option'][1]['option']"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "index": 4,
+    "later": "main_menu",
+    "emptyDesc": true,
+    "emptyOption": false,
+    "isASwitch": false,
+    "intoOption": [
+      {
+        "index": 0,
+        "later": "main_menu[4]['option']",
+        "emptyDesc": false,
+        "intoDesc": [
+          {
+            "index": 0,
+            "later": "main_menu[4]['option'][0]['desc']"
+          }
+        ],
+        "emptyOption": false,
+        "isASwitch": true,
+        "switchValues": [
+          1,
+          1,
+          2021
+        ]
+      },
+      {
+        "index": 1,
+        "later": "main_menu[4]['option']",
+        "emptyDesc": false,
+        "intoDesc": [
+          {
+            "index": 0,
+            "later": "main_menu[4]['option'][1]['desc']"
+          }
+        ],
+        "emptyOption": false,
+        "isASwitch": true,
+        "switchValues": [
+          12,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "index": 5,
+    "later": "main_menu",
+    "emptyDesc": false,
+    "intoDesc": [
+      {
+        "index": 0,
+        "later": "main_menu[5]['desc']"
+      },
+      {
+        "index": 1,
+        "later": "main_menu[5]['desc']"
+      },
+      {
+        "index": 2,
+        "later": "main_menu[5]['desc']"
+      },
+      {
+        "index": 3,
+        "later": "main_menu[5]['desc']"
+      },
+      {
+        "index": 4,
+        "later": "main_menu[5]['desc']"
+      },
+      {
+        "switchValues": [
+          "t",
+          "t",
+          "t",
+          0,
+          0
+        ]
+      }
+    ],
+    "emptyOption": true,
+    "isASwitch": false,
+    "intoOption": []
+  }
+]

@@ -8,4 +8,4 @@ def getMachine(statut, args):
         conso = 't' # insérer code pour voir la consomation
         bat = 't' # insérer code pour voir la batterie
         
-        return ([bat], [prod], [conso], [_in], [_out])
+        return (bat, prod, conso, _in, _out)

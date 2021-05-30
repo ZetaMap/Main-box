@@ -1,2 +1,2 @@
-powershell .\__init__.py
+powershell python .\__init__.py
 pause

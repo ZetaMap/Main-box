@@ -32,8 +32,7 @@ def ScanMenu(key, keyDir=0, keyLater="main_menu"):
     output=()
 
     for i in range(len(key)):
-        output=output.__add__(({"keyIndex": i},))
-        output[i].update({"keyDir": keyDir})
+        output=output.__add__(({"index": i},))
         output[i].update({"later": keyLater})
 
         if type(key[i]) == dict:
@@ -54,8 +53,6 @@ def ScanMenu(key, keyDir=0, keyLater="main_menu"):
                     except IndexError:
                         switchValues = StartEvent(key[i]["StartEvent"], -1, ())
                         if not type(switchValues) == tuple: raise TypeError("the values returned by '{}()' must be of type Tuple".format(key[i]["StartEvent"]))
-                        for ii in switchValues:
-                            if type(ii) != list: raise TypeError("please use only List type in the values returned by '{}()'".format(key[i]["StartEvent"]))
                         output[i]["intoDesc"]+=({"switchValues": switchValues},)
                         break
                    
@@ -77,22 +74,16 @@ def ScanMenu(key, keyDir=0, keyLater="main_menu"):
                             
                         if key[i].__contains__("StartEvent"): # The function will be run with index -1, you can use it to return a list of values. Ex: ([0], [1])"
                             switchValues = StartEvent(key[i]["StartEvent"], -1, ())
-
                             if not type(switchValues) == tuple: raise TypeError("the values returned by '{}()' must be of type Tuple".format(key[i]["StartEvent"]))
-                            for ii in switchValues:
-                                if type(ii) != list: raise TypeError("please use only List type in the values returned by '{}()'".format(key[i]["StartEvent"]))
                         else: switchValues = ()
-
+                        
                         output[i].update({"switchValues": switchValues})
             else: 
                 output[i].update({"isASwitch": False})
                 output[i].update({"intoOption": ScanMenu(key[i]["option"], keyDir+1, "{}[{}]['option']".format(keyLater, i))})
-            
-            output[i].update({"type": dict})
 
         elif type(key[i]) == str: 
             if key[i] == "": raise ValueError("please don't use an empty Str")
-            output[i].update({"type": str})
             
         else: raise TypeError("the key can only accept Str and Dict types")
     return output

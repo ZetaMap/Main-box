@@ -1,5 +1,5 @@
 from os import getcwd
-from Lib.json import loads, dumps
+from lib.json import loads, dumps
 
 class Vars:
     def init(self):
