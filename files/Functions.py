@@ -28,12 +28,12 @@ def ScanSettings(key):
         Vars.SaveSettingAll(custom)
     return custom
 
-def ScanMenu(key, keyDir=0, keyLater="main_menu"):
+def ScanMenu(key, keyDir=0, keyCurrent="main_menu"):
     output=()
 
     for i in range(len(key)):
         output=output.__add__(({"index": i},))
-        output[i].update({"later": keyLater})
+        output[i].update({"currently": keyCurrent})
 
         if type(key[i]) == dict:
             if not key[i].__contains__("name"): raise KeyError("must contain a non-empty 'name' key")
@@ -47,14 +47,16 @@ def ScanMenu(key, keyDir=0, keyLater="main_menu"):
                 for ii in key[i]["desc"]: 
                     if type(ii) != str: raise TypeError("the list of key 'desc' can accept only Str type")
                 output[i].update({"emptyDesc": False})
-                output[i].update({"intoDesc": ScanMenu(key[i]["desc"], keyDir+1, "{}[{}]['desc']".format(keyLater, i))})
+                output[i].update({"intoDesc": ScanMenu(key[i]["desc"], keyDir+1, "{}[{}]['desc']".format(keyCurrent, i))})
+                values = ()
                 for ii in key[i]["desc"]:
                     try: ii.format()
                     except IndexError:
-                        switchValues = StartEvent(key[i]["StartEvent"], -1, ())
-                        if not type(switchValues) == tuple: raise TypeError("the values returned by '{}()' must be of type Tuple".format(key[i]["StartEvent"]))
-                        output[i]["intoDesc"]+=({"switchValues": switchValues},)
+                        if key[i].__contains__("StartEvent"): 
+                        	values = StartEvent(key[i]["StartEvent"], -1, ())
+                        	if not type(values) == tuple: raise TypeError("the values returned by '{}()' must be of type Tuple".format(key[i]["StartEvent"]))
                         break
+                output[i].update({"values": values})
                    
             if not key[i].__contains__("option"): raise KeyError("must contain a 'option' key, empty or not")
             elif type(key[i]["option"]) != list: raise TypeError("the key 'option' must be a List")
@@ -73,17 +75,19 @@ def ScanMenu(key, keyDir=0, keyLater="main_menu"):
                             if type(ii) != str: raise TypeError("if you use the key 'switch', the list of key 'option' can accept only Str type")
                             
                         if key[i].__contains__("StartEvent"): # The function will be run with index -1, you can use it to return a list of values. Ex: ([0], [1])"
-                            switchValues = StartEvent(key[i]["StartEvent"], -1, ())
-                            if not type(switchValues) == tuple: raise TypeError("the values returned by '{}()' must be of type Tuple".format(key[i]["StartEvent"]))
-                        else: switchValues = ()
+                            values = StartEvent(key[i]["StartEvent"], -1, ())
+                            if not type(values) == tuple: raise TypeError("the values returned by '{}()' must be of type Tuple".format(key[i]["StartEvent"]))
+                        else: values = ()
                         
-                        output[i].update({"switchValues": switchValues})
+                        output[i].update({"values": values})
             else: 
                 output[i].update({"isASwitch": False})
-                output[i].update({"intoOption": ScanMenu(key[i]["option"], keyDir+1, "{}[{}]['option']".format(keyLater, i))})
+                output[i].update({"intoOption": ScanMenu(key[i]["option"], keyDir+1, "{}[{}]['option']".format(keyCurrent, i))})
+                output[i]["intoOption"]+=({"later": keyCurrent},)
 
         elif type(key[i]) == str: 
             if key[i] == "": raise ValueError("please don't use an empty Str")
+            output[i].update({"emptyOption": True})
             
         else: raise TypeError("the key can only accept Str and Dict types")
     return output

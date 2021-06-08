@@ -4,8 +4,10 @@ if __name__ == '__main__':
 
     Brain.init()
     
-    print(Brain.back())
+    for i in Brain.name(Brain.back(), 0, Brain.lines)[0]:
+    	print(i)
 
     while True:
-        try: Brain.keys(keyInput(False), Brain.main_menu)
-        except IndexError: ...
+        try: Brain.keys(keyInput(False))
+        except IndexError: pass
+	

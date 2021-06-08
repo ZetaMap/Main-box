@@ -16,7 +16,7 @@ class Brain:
         except FileNotFoundError as e: FileNotFoundError(str(e))
 
         self.index = 0
-        self.later = self.main_menu
+        self.later = self.ScanResult
         screen = self.settings["screen"].split("x")
         self.lines = int(screen[0])
         self.letters = int(screen[1])
@@ -38,16 +38,16 @@ class Brain:
 
     def back(self):
         self.index = 0
-        self.later = self.main_menu
+        self.later = self.ScanResult
         sleep(2)
-        return self.name(self.main_menu, 0)[0]
+        return self.main_menu
 
     def succes(self):
         print("Paramètre    /")
         print("modifié !  \\/")
         return self.back()
 
-    def name(self, key, index):
+    def name(self, key, index, lines):
         __temp__, output=[], []
         if index < 0: index=0
         if index > len(key)-1: index=len(key)-1
@@ -80,31 +80,31 @@ class Brain:
         wait("suppr") 
         sleep(0.2)
         self.init()  # allumer tout
-        return self.main_menu
+        self.main(self.ScanResult)
 
-    def keys(self, input, key):
-        print(self.index,":",input)
-        
+    def keys(self, input):
         if input == "haut": 
             self.index-=1
-            self.main(key)
+            self.main(self.ScanResult)
 
         elif input == "bas": 
             self.index+=1
-            self.main(key)
+            self.main(self.ScanResult)
 
-        elif input == "enter":
-            self.later = key[self.index]["option"]
-            try: 
-                try: out = key[self.index]["option"]
-                except KeyError: out = key[self.index]
-            except KeyError: return None
-            self.index = 0
-            return out
+        elif input == "enter":			
+            if not self.ScanResult[self.index]["emptyOption"]:
+                self.later=self.ScanResult
+                if self.ScanResult[self.index]["isASwitch"]: pass
+                else: self.ScanResult=self.ScanResult[self.index]["intoOption"]
+                
+                self.index=0
+                self.main(self.ScanResult)
 
         elif input == "backspace":
             self.index = 0
-            return self.later
+            self.ScanResult = self.later
+
+            self.main(self.ScanResult)
 
         elif input == "gauche" and self.isACounter:
             pass
@@ -112,12 +112,22 @@ class Brain:
         elif input == "droite" and self.isACounter:
             pass
         
-        elif input == "suppr": return self.waitStart()
+        elif input == "suppr": self.waitStart()
         
         else: return []
     
-    def main(self, key):
-        output, lines, self.index=self.name(key, self.index)
+    def main(self, key, values=()):
+        if self.index < 0: self.index=0
+        if self.index > len(key)-1: self.index=len(key)-1
+
+        menu=eval("self."+key[self.index]["currently"])
+
+        if not key[self.index]["emptyDesc"]:output, lines=self.desc(menu, key["values"])
+        else: output, lines=[], self.lines
+        output2, lines, self.index=self.name(menu, self.index, lines)
+        output+=output2
+        
+        print("\n\n")
         for i in output:
             print(i)
 

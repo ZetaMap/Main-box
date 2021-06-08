@@ -67,7 +67,7 @@
 			{
 				"name": "Exporter sur USB",
 				"desc": ["Exporter un suivi détaillé des poules ?"],
-				"swtich": true,
+				"switch": true,
         		"option": [
 					"  OUI  >NON",
 					" >OUI   NON"
