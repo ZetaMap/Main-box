@@ -1,2 +1,2 @@
-python .\files\__init__.py
+py .\files\__init__.py
 pause
